@@ -1,43 +1,42 @@
-'use strict';
+"use strict";
 
-const logger = require('../utils/logger');
-const playlistStore = require('../models/playlist-store.js');
-const uuid = require('uuid');
+const accounts = require("./accounts.js");
+
+const logger = require("../utils/logger");
+const playlistStore = require("../models/playlist-store.js");
+const uuid = require("uuid");
 
 const dashboard = {
   index(request, response) {
-    logger.info('dashboard rendering');
+    logger.info("dashboard rendering");
+    const loggedInUser = accounts.getCurrentUser(request);
     const viewData = {
-      //get all the playlists and display them
-      title: 'Playlist Dashboard',
-      playlists: playlistStore.getAllPlaylists(),
+      title: "Playlist Dashboard",
+      playlists: playlistStore.getUserPlaylists(loggedInUser.id)
     };
-    logger.info('about to render', playlistStore.getAllPlaylists());
-    response.render('dashboard', viewData);
+    logger.info("about to render", playlistStore.getAllPlaylists());
+    response.render("dashboard", viewData);
   },
 
-
-  deletePlaylist(request, response){
+  deletePlaylist(request, response) {
     const playlistId = request.params.id;
     logger.debug(`Deleting Playlist ${playlistId}`);
     playlistStore.removePlaylist(playlistId);
-    response.redirect('/dashboard/');
-
+    response.redirect("/dashboard/");
   },
 
   addPlaylist(request, response) {
-    const newPlaylist = {
-      id:uuid(),
+    const loggedInUser = accounts.getCurrentUser(request);
+    const newPlayList = {
+      id: uuid(),
+      userid: loggedInUser.id,
       title: request.body.title,
-      songs:[],
+      songs: []
     };
-    playlistStore.addPlaylist(newPlaylist);
-    response.redirect('/dashboard');
-  },
-
-
-
-
+    logger.debug("Creating a new Playlist", newPlayList);
+    playlistStore.addPlaylist(newPlayList);
+    response.redirect("/dashboard");
+  }
 };
 
 module.exports = dashboard;

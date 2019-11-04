@@ -1,18 +1,25 @@
 {
-    "users": [
-      {
-        "firstName": "andy",
-        "lastName": "b",
-        "email": "andyb@mail.com",
-        "password": "12345",
-        "id": "3ad52697-6d98-4d80-8273-084de55a86c0"
-      },
-      {
-        "firstName": "randy",
-        "lastName": "b",
-        "email": "randyb@mail.com",
-        "password": "secret",
-        "id": "2b6f0989-7b7f-4a38-ad26-aa06b922d751"
-      }
-    ]
-  }
+  "users": [
+    {
+      "firstName": "andy",
+      "lastName": "b",
+      "email": "andyb@mail.com",
+      "password": "12345",
+      "id": "3ad52697-6d98-4d80-8273-084de55a86c0"
+    },
+    {
+      "firstName": "randy",
+      "lastName": "b",
+      "email": "randyb@mail.com",
+      "password": "secret",
+      "id": "2b6f0989-7b7f-4a38-ad26-aa06b922d751"
+    },
+    {
+      "firstName": "herp",
+      "lastName": "derp",
+      "email": "herpderp@mail.com",
+      "password": "12345",
+      "id": "8b35794d-63d9-45e2-96b1-83d3c010e2d1"
+    }
+  ]
+}

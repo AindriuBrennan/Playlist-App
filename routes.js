@@ -9,7 +9,6 @@ const playlist = require("./controllers/playlist.js");
 //route for accounts
 const accounts = require("./controllers/accounts.js");
 
-router.get("/", dashboard.index);
 //dashboard route
 router.get("/dashboard", dashboard.index);
 //about route

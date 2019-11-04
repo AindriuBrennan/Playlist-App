@@ -36,12 +36,13 @@ const accounts = {
     user.id = uuid();
     userstore.addUser(user);
     logger.info(`registering ${user.email}`);
-    response.redirect("/");
+    response.redirect("/dashboard");
   },
 
   authenticate(request, response) {
     const user = userstore.getUserByEmail(request.body.email);
-    if (user) {
+    const pass = userstore.getUserPassword(request.body.password);
+    if (user, pass) {
       response.cookie("playlist", user.email);
       logger.info(`logging in ${user.email}`);
       response.redirect("/dashboard");

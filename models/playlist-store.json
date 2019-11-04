@@ -1,3 +1,21 @@
 {
-  "playlistCollection": []
+  "playlistCollection": [
+    {
+      "id": "6e22bc1d-a646-49c1-a7e8-5c7b3ae1c775",
+      "title": "new playlist",
+      "songs": []
+    },
+    {
+      "id": "b9fc0eec-cb13-4057-b95b-d949b39ffe2c",
+      "userid": "3ad52697-6d98-4d80-8273-084de55a86c0",
+      "title": "derp list",
+      "songs": []
+    },
+    {
+      "id": "b7eec7b3-1ad5-4de1-a311-ada77c52f6e8",
+      "userid": "2b6f0989-7b7f-4a38-ad26-aa06b922d751",
+      "title": "herp",
+      "songs": []
+    }
+  ]
 }
