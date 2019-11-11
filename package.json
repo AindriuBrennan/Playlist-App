@@ -16,6 +16,7 @@
     "lodash": "^4.17.11",
     "lowdb": "^1.0.0",
     "semantic-ui": "^2.4.2",
+    "spotify-web-api-node": "^4.0.0",
     "uuid": "^3.3.2",
     "winston": "^3.2.1"
   },
