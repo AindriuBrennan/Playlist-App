@@ -1,0 +1,3 @@
+redirectUri = http://localhost:3000/callback
+client_Id = d038cb0335b64a3d8faa5b8a94a61e27
+clientSecret = 3af833a2737242e5a782195936472e4c
