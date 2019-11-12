@@ -73,13 +73,33 @@ var spotify = {
     spotifyApi.searchTracks(req.body.search).then(
       function(data) {
         // var testPage = data.body.tracks.items;
-        console.log('Search by "User input"', data.body.tracks.items);
+        //dive deep to find attributes from the items array
+        console.log(data.body.tracks.items[0].album.name);
         res.redirect("/search");
       },
       function(err) {
         console.error(err);
       }
     );
+  },
+
+  searchAlbums(req, res) {
+    spotifyApi
+      .getAlbum("5U4W9E5WsYb2jUQWePT8Xm")
+      .then(function(data) {
+        return data.body.albums.map(function(results) {
+          return results.id;
+        });
+      })
+      .then(function(trackIds) {
+        return spotifyApi.getTracks(trackIds);
+      })
+      .then(function(data) {
+        console.log(data.body);
+      })
+      .catch(function(error) {
+        console.error(error);
+      });
   }
 };
 
