@@ -9,8 +9,11 @@ const playlist = require("./controllers/playlist.js");
 //route for accounts
 const accounts = require("./controllers/accounts.js");
 
-//route for spotify
+//route for spotify auth
 const spotify = require("./models/spotifyAuth.js");
+
+//route for spotify queries
+const search = require("./controllers/search.js");
 
 //dashboard route
 router.get("/dashboard", dashboard.index);
@@ -35,15 +38,16 @@ router.get("/logout", accounts.logout);
 router.post("/register", accounts.register);
 router.post("/authenticate", accounts.authenticate);
 
-//routes for Spotify
+//routes for spotify queries
+router.get("/search", search.index);
+
+//routes for Spotify auth
 
 router.get("/spotify", spotify.createAuthorizeURL);
-// router.get("/spotify", function (req, res) {
-//   var html = spotifyApi.createAuthorizeURL(scopes)
-//   console.log(html)
-//   res.send(html + "&show_dialog=true")
-// })
-
 router.get("/callback", spotify.callback);
+
+router.post("/spotifyAuth/getUserPlaylists",spotify.getUserPlaylists);
+
+router.post("/spotifyAuth/searchSpotify", spotify.searchSpotify);
 
 module.exports = router;

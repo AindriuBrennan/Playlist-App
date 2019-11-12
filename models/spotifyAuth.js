@@ -1,13 +1,17 @@
 var SpotifyWebApi = require("spotify-web-api-node");
 
-
-
-var scopes = ["user-read-private", "user-read-email"],
+let results = [];
+var scopes = [
+    "user-read-private",
+    "user-read-email",
+    "playlist-read-collaborative",
+    "playlist-modify-private",
+    "playlist-modify-public",
+    "streaming"
+  ],
   redirectUri = "http://localhost:3000/callback",
   clientId = "d038cb0335b64a3d8faa5b8a94a61e27",
   clientSecret = "3af833a2737242e5a782195936472e4c";
-
-// state = 'some-state-of-my-choice';
 
 // Setting credentials can be done in the wrapper's constructor, or using the API object's setters.
 var spotifyApi = new SpotifyWebApi({
@@ -15,8 +19,6 @@ var spotifyApi = new SpotifyWebApi({
   clientSecret: clientSecret,
   redirectUri: redirectUri
 });
-
-var code = "";
 
 var spotify = {
   createAuthorizeURL(req, res) {
@@ -42,11 +44,40 @@ var spotify = {
         */
 
         /* Redirecting back to the main page! :-) */
-        res.redirect("/");
+        res.redirect("/dashboard");
       },
       function(err) {
         res.status(err.code);
         res.send(err.message);
+      }
+    );
+  },
+
+  getUserPlaylists(req, res) {
+    spotifyApi.getUserPlaylists(req.body.search).then(
+      function(data) {
+        console.log("Retrieved playlists", data.body);
+        res.redirect("/search");
+      },
+      function(err) {
+        console.log("Something went wrong!", err);
+      },
+      function(data) {
+        results = data.name;
+        console.log(results);
+      }
+    );
+  },
+
+  searchSpotify(req, res) {
+    spotifyApi.searchTracks(req.body.search).then(
+      function(data) {
+        // var testPage = data.body.tracks.items;
+        console.log('Search by "User input"', data.body.tracks.items);
+        res.redirect("/search");
+      },
+      function(err) {
+        console.error(err);
       }
     );
   }

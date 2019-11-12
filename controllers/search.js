@@ -1,5 +1,7 @@
 "use strict";
 
+
+
 const search = {
   index(request, response) {
     const viewData = {
@@ -7,6 +9,10 @@ const search = {
     };
     response.render("search", viewData);
   }
+
+
+
+
 };
 
 module.exports = search;
