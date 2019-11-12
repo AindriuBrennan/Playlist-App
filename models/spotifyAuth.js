@@ -74,7 +74,9 @@ var spotify = {
       function(data) {
         // var testPage = data.body.tracks.items;
         //dive deep to find attributes from the items array
-        console.log(data.body.tracks.items[0].album.name);
+       // console.log(data.body.tracks.items);
+        const items =data.body.tracks.items;
+        const name = items.forEach(item => console.log(item.name))
         res.redirect("/search");
       },
       function(err) {
