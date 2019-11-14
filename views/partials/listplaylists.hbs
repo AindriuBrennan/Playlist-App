@@ -1,3 +1,5 @@
+{{> menu}}
+
 {{#each playlists}}
   <section class="ui inverted grey stacked segment">
     <h2 class="ui header">
@@ -11,4 +13,13 @@
       <i class="icon trash"></i>
     </a>
   </section>
+{{/each}}
+
+{{#each myResults}}
+<section class="ui inverted grey segment">
+  <h2 class="ui header">
+    {{name}}
+  </h2>
+  <p><img  src="{{images.[0].url}}"></p>
+</section>
 {{/each}}

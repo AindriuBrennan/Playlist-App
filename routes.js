@@ -38,16 +38,21 @@ router.get("/logout", accounts.logout);
 router.post("/register", accounts.register);
 router.post("/authenticate", accounts.authenticate);
 
-//routes for spotify queries
+//routes for spotify queries in search controller
 router.get("/search", search.index);
+router.post("/search/searchSpotify", search.searchSpotify);
+router.post("/search/getUserPlaylists", search.getUserPlaylists);
+
+
+
+
+
 
 //routes for Spotify auth
-
 router.get("/spotify", spotify.createAuthorizeURL);
 router.get("/callback", spotify.callback);
 
-router.post("/spotifyAuth/getUserPlaylists",spotify.getUserPlaylists);
 
-router.post("/spotifyAuth/searchSpotify", spotify.searchSpotify);
+
 
 module.exports = router;

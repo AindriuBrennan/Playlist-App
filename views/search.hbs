@@ -1,27 +1,11 @@
 {{> menu id="search"}}
-
-<section class="ui center aligned middle aligned segment">
-  <h3>
-    Search Spotify Users Playlists
-  </h3>
-  <form class="ui stacked segment form" action="/spotifyAuth/getUserPlaylists" method="POST">
-    <div class="field">
-      <input placeholder="Search Playlists" type="text" name="search">
-      <button type="submit">Search</button>
-    </div>
-  </form>
-
-
   <h3>
     Search Spotify Songs
   </h3>
-  <form class="ui segment form" action="/spotifyAuth/searchSpotify" method="POST">
+  <form class="ui segment form" action="/search/searchSpotify" method="POST">
     <div class="field">
       <input placeholder="Search Songs" type="text" name="search">
       <button type="submit">Search</button>
     </div>
   </form>
-
-  {{> listSpotifySongs}}
-
 </section>

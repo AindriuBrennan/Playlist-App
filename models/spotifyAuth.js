@@ -53,38 +53,38 @@ var spotify = {
     );
   },
 
-  getUserPlaylists(req, res) {
-    spotifyApi.getUserPlaylists(req.body.search).then(
+  getUserPlaylists() {
+    return spotifyApi.getUserPlaylists(1155871456).then(
       function(data) {
-        console.log("Retrieved playlists", data.body);
-        res.redirect("/search");
+        const myPlaylists = data.body.items;
+        return myPlaylists;
+        // console.log("Retrieved playlists", data.body);
+        // res.redirect("/search");
       },
       function(err) {
         console.log("Something went wrong!", err);
-      },
-      function(data) {
-        results = data.name;
-        console.log(results);
       }
     );
   },
 
   searchSpotify(req, res) {
-    spotifyApi.searchTracks(req.body.search).then(
+    return spotifyApi.searchTracks(req.body.search).then(
       function(data) {
-        // var testPage = data.body.tracks.items;
         //dive deep to find attributes from the items array
-       // console.log(data.body.tracks.items);
-        const items =data.body.tracks.items;
-        const name = items.forEach(item => console.log(item.name))
-        res.redirect("/search");
+
+        const items = data.body.tracks.items;
+        // const songName = items.forEach(item => console.log(item.name));
+        // const bandName = items.forEach(item => console.log(item.artists[0].name));
+        // res.render("/listsongs.hbs", {items, songName})
+        //res.redirect("/search");
+        return items;
       },
       function(err) {
         console.error(err);
       }
     );
   },
-
+  //search albums
   searchAlbums(req, res) {
     spotifyApi
       .getAlbum("5U4W9E5WsYb2jUQWePT8Xm")
@@ -102,6 +102,20 @@ var spotify = {
       .catch(function(error) {
         console.error(error);
       });
+  },
+
+  //SEARCH new releases
+
+  searchNewReleases() {
+    spotifyApi.getNewReleases({ limit: 5, offset: 0, country: "IE" }).then(
+      function(data) {
+        console.log(data.body);
+        done();
+      },
+      function(err) {
+        console.log("Something went wrong!", err);
+      }
+    );
   }
 };
 
