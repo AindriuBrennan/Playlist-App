@@ -20,6 +20,11 @@
   <h2 class="ui header">
     {{name}}
   </h2>
+  
+  <h3>Total songs {{tracks.total}}</h3>
   <p><img  src="{{images.[0].url}}"></p>
+  
+  <a href="/search/getPlaylistTracks/{{id}}" class="ui button">View Tracks</button>
+  
 </section>
 {{/each}}

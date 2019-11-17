@@ -1,6 +1,9 @@
 var SpotifyWebApi = require("spotify-web-api-node");
+const axios = require("axios");
+
 
 let results = [];
+let trackId =0;
 var scopes = [
     "user-read-private",
     "user-read-email",
@@ -67,8 +70,57 @@ var spotify = {
     );
   },
 
+  
+//get user playlists then get the id of the playlists then get the tracks of the playlist
+//does not work, get 404 error
+  getUserPlaylistId(id) {
+    return spotifyApi.getUserPlaylists(1155871456).then(
+      function(data) {
+        const myPlaylists = data.body.items;
+        let playlistId = myPlaylists.map(item => item.id);
+        console.log(playlistId);
+        
+      }
+    )
+    .then(axios.get(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`))
+  },
+
+
+  //trying to get this data with out user input but could not make it work
+
+  // getPlaylistTracks(playlistId) {
+  //  axios.get(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`).then(
+  //    function(data) {
+  //      const tracks = data.body.items;
+  //      return tracks;
+  //    }
+  //  )
+  // },
+
+
+  // nothing renders. 
+  browseCategories() {
+    return axios.get('https://api.spotify.com/v1/browse/categories?country=IE&limit=10', {
+      headers: {
+        Authorization: 'Bearer' + access_token
+      }
+    }).then(
+      function(data) {
+        const categories = data.categories.items;
+        return categories;
+      },
+     
+      function(err) {
+        console.error(err);
+      }
+    )
+  },
+
+
+
+
   searchSpotify(req, res) {
-    return spotifyApi.searchTracks(req.body.search).then(
+    return spotifyApi.searchTracks(req.body.search, {limit: 5}).then(
       function(data) {
         //dive deep to find attributes from the items array
 
@@ -84,27 +136,9 @@ var spotify = {
       }
     );
   },
-  //search albums
-  searchAlbums(req, res) {
-    spotifyApi
-      .getAlbum("5U4W9E5WsYb2jUQWePT8Xm")
-      .then(function(data) {
-        return data.body.albums.map(function(results) {
-          return results.id;
-        });
-      })
-      .then(function(trackIds) {
-        return spotifyApi.getTracks(trackIds);
-      })
-      .then(function(data) {
-        console.log(data.body);
-      })
-      .catch(function(error) {
-        console.error(error);
-      });
-  },
+  
 
-  //SEARCH new releases
+  //SEARCH new releases not used yet
 
   searchNewReleases() {
     spotifyApi.getNewReleases({ limit: 5, offset: 0, country: "IE" }).then(

@@ -1,3 +1,18 @@
 {
-  "playlistCollection": []
+  "playlistCollection": [
+    {
+      "id": "74e9e77c-c348-4a50-a38a-4302c9bbd8d3",
+      "userid": "3ad52697-6d98-4d80-8273-084de55a86c0",
+      "title": "",
+      "songs": [
+        {
+          "id": "91adf11c-8048-422d-b163-9bc306970a68",
+          "title": "fitzpleasure",
+          "artist": "alt-j",
+          "duration": 4
+        }
+      ],
+      "duration": 4
+    }
+  ]
 }
