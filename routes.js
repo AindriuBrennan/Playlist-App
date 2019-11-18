@@ -18,7 +18,7 @@ const search = require("./controllers/search.js");
 //dashboard route
 router.get("/dashboard", dashboard.index);
 //about route
-router.get("/about", search.getCategories);
+router.get("/about", search.browseCategories);
 //playlist id route
 router.get("/playlist/:id", playlist.index);
 //delete song button route
@@ -44,7 +44,7 @@ router.post("/search/searchSpotify", search.searchSpotify);
 router.post("/search/getUserPlaylists", search.getUserPlaylists);
 
 //get spotify categories
-router.post("/search/getCategories", search.getCategories);
+router.post("/search/browseCategories", search.browseCategories);
 
 // router.post("/spotify/getUserPlaylistId", spotify.getUserPlaylistId);
 router.post("/search/getPlaylistTracks", search.getPlaylistTracks);

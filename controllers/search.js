@@ -39,17 +39,22 @@ const search = {
   // },
 
   getPlaylistTracks(req, response) {
-    let spotifyPlaylistId = req.params.id;
-    spotify.getPlaylistTracks(spotifyPlaylistId).then(function(items) {
+    spotify.getPlaylistTracks().then(function(items) {
       response.render("./partials/listSpotifySongs", { items });
     });
   },
 
-  getCategories(req, response) {
+  browseCategories(req, response) {
     spotify.browseCategories().then(function(myResults) {
-      response.render("./partials/categories",  { myResults });
+      response.render("./partials/categories", { myResults });
     });
   }
+
+  // getCategories(req, response) {
+  //   spotify.browseCategories().then(function(myResults) {
+  //     response.render("./partials/categories",  { myResults });
+  //   });
+  // }
 
   
 };

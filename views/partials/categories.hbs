@@ -1,10 +1,23 @@
 {{> menu}}
 {{#each myResults}}
-<div class="ui four cards">
-  <div class="card">
-     <img src="{{icons.[0].url}}">
-    <a class="header">{{name}}</a> 
 
-  </div>
+<div class="ui two column grid">
+    <div class="row">
+        <div class="ui two cards">
+            <div class="card">
+                <div class="image">
+                    <img src="{{icons.[0].url}}">
+                </div>
+                <div class="extra">
+
+                    <a class="header">{{name}}</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 </div>
+
+
 {{/each}}
